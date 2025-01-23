@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Routes</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #0056b3;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            display: block;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.2rem;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        #submit {
+            background-color: #28a745;
+        }
+
+        #submit:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Find Routes with Us</h1>
+
+    <div id="svg_wrap"></div>
+
+    <form action="/post" method="POST">
+        <section>
+            <label for="departure">Departure:</label>
+            <select id="departure" name="departure" required>
+                <option value="">Select Departure Station</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Panchkula">Panchkula</option>
+                <option value="Mohali">Mohali</option>
+                <option value="Zirakpur">Zirakpur</option>
+            </select>
+
+            <label for="arrival">Arrival:</label>
+            <select id="arrival" name="arrival" required>
+                <option value="">Select Arrival Station</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Panchkula">Panchkula</option>
+                <option value="Mohali">Mohali</option>
+                <option value="Zirakpur">Zirakpur</option>
+            </select>
+
+            <div class="button" id="submit">Search Routes</div>
+        </section>
+    </form>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

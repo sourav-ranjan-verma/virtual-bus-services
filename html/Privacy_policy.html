@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #444;
+        }
+
+        section {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            display: none; /* Hide sections initially */
+        }
+
+        #table-of-contents {
+            display: block; /* Keep table of contents visible */
+        }
+
+        h2 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        p,
+        ul {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            max-width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #222;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Privacy Policy</h1>
+
+    <!-- Table of Contents -->
+    <section id="table-of-contents">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#" data-target="introduction">Introduction</a></li>
+            <li><a href="#" data-target="information-we-collect">Information We Collect</a></li>
+            <li><a href="#" data-target="how-we-use">How We Use Your Information</a></li>
+            <li><a href="#" data-target="protect-your-info">How We Protect Your Information</a></li>
+            <li><a href="#" data-target="third-party">Third-Party Sharing</a></li>
+            <li><a href="#" data-target="cookies">Cookies</a></li>
+            <li><a href="#" data-target="your-rights">Your Rights</a></li>
+            <li><a href="#" data-target="updates">Updates to this Privacy Policy</a></li>
+            <li><a href="#" data-target="contact-us">Contact Us</a></li>
+        </ul>
+    </section>
+
+    <!-- Sections -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+            Welcome to [Website Name]. Your privacy is of utmost importance to us. This Privacy Policy outlines how we
+            collect, use, and protect your personal information when you use our website and services.
+        </p>
+        <a href="#" class="back-button" data-target="table-of-contents">Back to Table of Contents</a>
+    </section>
+
+    <section id="information-we-collect">
+        <h2>Information We Collect</h2>
+        <ul>
+            <li><strong>Personal Information:</strong> Includes your name, email address, phone number, and other details
+                provided when booking tickets, reporting issues, or using our services.</li>
+            <li><strong>Usage Data:</strong> Information about how you use our website, including IP addresses, browser type,
+                pages visited, and time spent on pages.</li>
+        </ul>
+        <a href="#" class="back-button" data-target="table-of-contents">Back to Table of Contents</a>
+    </section>
+
+    <!-- Repeat similar structure for other sections -->
+
+    <footer>
+        <p>&copy; 2025 [Website Name]. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('#table-of-contents a, .back-button').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('data-target');
+
+                // Hide all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the target section
+                document.getElementById(targetId).style.display = 'block';
+            });
+        });
+
+        // Initially show only the table of contents
+        document.getElementById('table-of-contents').style.display = 'block';
+    </script>
+</body>
+
+</html>

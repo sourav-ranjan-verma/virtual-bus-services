@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Bus</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Additional styles for checkboxes */
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #e9ecef; color: #333;">
+    <h1 style="text-align: center; color: #007bff;">Report a Bus Issue</h1>
+    
+    <form id="reportForm" style="max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <label for="bus_number" style="display: block; margin-bottom: 5px; font-weight: bold;">Bus Number:</label>
+        <input type="text" id="bus_number" name="bus_number" placeholder="Enter the bus number" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;">
+
+        <label for="route" style="display: block; margin-bottom: 5px; font-weight: bold;">Route:</label>
+        <input type="text" id="route" name="route" placeholder="Enter the route" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;">
+
+        <label for="issue_type" style="display: block; margin-bottom: 5px; font-weight: bold;">Issue Type:</label>
+        <select id="issue_type" name="issue_type" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;">
+            <option value="">Select an issue</option>
+            <option value="Overcrowding">Overcrowding</option>
+            <option value="Delay">Delay</option>
+            <option value="Misbehavior">Misbehavior</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="description" style="display: block; margin-bottom: 5px; font-weight: bold;">Description:</label>
+        <textarea id="description" name="description" placeholder="Provide a detailed description" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;"></textarea>
+
+        <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;">
+
+        <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;">
+
+        <label for="phone" style="display: block; margin-bottom: 5px; font-weight: bold;">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;">
+
+        <button type="submit" style="background-color: #007bff; color: white; border: none; cursor: pointer; padding: 10px; font-size: 1rem; border-radius: 4px; width: 100%;">Submit Report</button>
+    </form>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init("PxkXilfNuMSlXYkIt"); // Replace with your EmailJS Public Key
+
+        document.getElementById("reportForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const form = event.target;
+
+            const data = {
+                bus_number: form.bus_number.value,
+                route: form.route.value,
+                issue_type: form.issue_type.value,
+                description: form.description.value,
+                name: form.name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+            };
+
+            console.log("Data to be sent:", data); // Debugging: Check form data
+            console.log("Sending data to EmailJS:", data);
+
+            emailjs
+                .send("service_v1opc3j", "template_21l7jia", data)
+                .then(() => {
+                    alert("Thank you for reporting. We will look into it.");
+                    form.reset();
+                })
+                .catch((error) => {
+                    console.error("EmailJS error:", error); // Debugging: Log errors
+                    alert("Failed to send the report. Please try again.");
+                });
+        });
+    </script>
+
+</body>
+
+</html>

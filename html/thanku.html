@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Updated path to the main stylesheet -->
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif; /* Match font with other HTML files */
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em; /* Increase font size for emphasis */
+        }
+        p {
+            font-size: 1.2em; /* Increase font size for better readability */
+            margin: 10px 0;
+        }
+        .ticket-info {
+            background-color: #fff; /* White background for ticket info */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px; /* Padding for spacing */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            display: inline-block; /* Center the box */
+        }
+        .button-container {
+            margin-top: 20px; /* Space above buttons */
+        }
+        .button {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 10px 20px; /* Padding */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            margin: 10px; /* Margin for spacing */
+        }
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Thank You for Your Booking!</h1>
+    <p>Your booking has been successfully completed.</p>
+    <div class="ticket-info">
+        <p>Ticket Number: <span id="ticketNumber"></span></p>
+        <p>Email: <span id="userName"></span></p>
+        <p>Payment ID: <span id="paymentId"></span></p>
+    </div>
+
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='index.html'">Go to Home Page</button>
+        <button class="button" onclick="window.location.href='Ticket.html'">Book Another Ticket</button>
+    </div>
+
+    <script>
+        // Get the data from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const ticketNumber = urlParams.get('ticketNumber');
+        const userName = urlParams.get('name');
+        const paymentId = urlParams.get('paymentId');
+
+        // Display the data on the page
+        document.getElementById('ticketNumber').textContent = ticketNumber;
+        document.getElementById('userName').textContent = userName;
+        document.getElementById('paymentId').textContent = paymentId;
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking Form</title>
+    <link rel="stylesheet" href="/css/style_ticket.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+    <h1>Book with us</h1>
+
+    <div id="svg_wrap"></div>
+
+    <form id="bookingForm">
+        <section>
+            <p>Step 1: Number of Seats</p>
+            <label for="seats">Number of Seats:</label>
+            <input type="number" id="seats" name="seats" placeholder="Enter number of seats" required>
+        </section>
+
+        <section>
+            <p>Step 2: Departure and Arrival</p>
+            <label for="departure">Departure:</label>
+            <select id="departure" name="departure" required>
+                <option value="">Select Departure</option>
+                <option value="City A">City A</option>
+                <option value="City B">City B</option>
+                <option value="City C">City C</option>
+            </select>
+
+            <label for="arrival">Arrival:</label>
+            <select id="arrival" name="arrival" required>
+                <option value="">Select Arrival</option>
+                <option value="City A">City A</option>
+                <option value="City B">City B</option>
+                <option value="City C">City C</option>
+            </select>
+        </section>
+
+        <section>
+            <p>Step 3: Contact Information</p>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </section>
+
+        <!-- Navigation Buttons -->
+        <div class="button" id="prev">&larr; Previous</div>
+        <div class="button" id="next">Next &rarr;</div>
+
+        <!-- Submit Button -->
+        <button type="button" id="submit" class="button" style="color: white;">BOOK NOW</button>
+    </form>
+
+    <script src="/js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submit').click(function () {
+                // Validate form fields
+                if ($('#seats').val() === "" || $('#departure').val() === "" || $('#arrival').val() === "" || $('#phone').val() === "" || $('#email').val() === "") {
+                    alert("Please fill out all fields before submitting.");
+                    return;
+                }
+
+                // Get form data
+                var seats = $('#seats').val();
+                var departure = $('#departure').val();
+                var arrival = $('#arrival').val();
+                var phone = $('#phone').val();
+                var email = $('#email').val();
+
+                // Create an order on the server
+                $.ajax({
+                    url: '/create-order', // Your server endpoint to create an order
+                    method: 'POST',
+                    data: {
+                        amount: seats * 100, // Assuming each seat costs 100
+                        currency: 'INR',
+                        receipt: 'receipt#1',
+                        name: 'Bus Booking',
+                        description: 'Booking for ' + seats + ' seats from ' + departure + ' to ' + arrival,
+                        contact: phone,
+                        email: email
+                    },
+                    success: function (response) {
+                        console.log("Order created successfully:", response); // Log the response
+                        // Initialize Razorpay payment
+                        var options = {
+                            key: response.key_id, // Your Razorpay key id
+                            amount: response.amount, // Amount is in currency subunits
+                            currency: response.currency,
+                            name: response.name,
+                            description: response.description,
+                            order_id: response.order_id, // This is the order_id created in your server
+                            handler: function (paymentResponse) {
+                                console.log("Payment successful:", paymentResponse); // Log payment response
+                                // Send the payment details to your server
+                                $.ajax({
+                                    url: '/post', // Your server endpoint to save data
+                                    method: 'POST',
+                                    data: {
+                                        seats: seats,
+                                        departure: departure,
+                                        arrival: arrival,
+                                        phone: phone,
+                                        email: email,
+                                        paymentId: paymentResponse.razorpay_payment_id // Send payment ID
+                                    },
+                                    success: function (savedData) {
+                                        console.log("Data saved successfully."); // Log success
+                                        // Redirect to thanku.html after successful data save with parameters
+                                        window.location.href = 'thanku.html?ticketNumber=' + savedData.ticketNumber + '&name=' + email + '&paymentId=' + paymentResponse.razorpay_payment_id;
+                                    },
+                                    error: function () {
+                                        console.error('Error saving data.'); // Log error
+                                        alert('Error saving data. Please try again.');
+                                    }
+                                });
+                            },
+                            prefill: {
+                                name: email, // Prefill name
+                                email: email, // Prefill email
+                                contact: phone // Prefill contact
+                            },
+                            theme: {
+                                color: "#F37254" // Customize the theme color
+                            }
+                        };
+                        var rzp1 = new Razorpay(options);
+                        rzp1.open();
+                    },
+                    error: function (error) {
+                        console.error('Error creating order:', error); // Log error
+                        alert('Error creating order. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

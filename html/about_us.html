@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #444;
+        }
+
+        section {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            display: none; /* Hide sections initially */
+        }
+
+        #table-of-contents {
+            display: block; /* Keep table of contents visible */
+        }
+
+        h2 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        p,
+        ul {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            max-width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #222;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>About Us</h1>
+
+    <!-- Table of Contents -->
+    <section id="table-of-contents">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#" data-target="introduction">Introduction</a></li>
+            <li><a href="#" data-target="our-mission">Our Mission</a></li>
+            <li><a href="#" data-target="our-values">Our Values</a></li>
+            <li><a href="#" data-target="team">Our Team</a></li>
+            <li><a href="#" data-target="contact-us">Contact Us</a></li>
+        </ul>
+    </section>
+
+    <!-- Sections -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+            Welcome to VBS. We are a passionate team dedicated to [describe what your company does, e.g., creating innovative tech solutions, delivering excellent customer service, etc.].
+        </p>
+        <a href="#" class="back-button" data-target="table-of-contents">Back to Table of Contents</a>
+    </section>
+
+    <section id="our-mission">
+        <h2>Our Mission</h2>
+        <p>
+            Our mission is to [describe the core purpose or goal of your company, e.g., deliver high-quality software solutions that empower businesses to thrive in the digital age].
+        </p>
+        <a href="#" class="back-button" data-target="table-of-contents">Back to Table of Contents</a>
+    </section>
+
+    <section id="our-values">
+        <h2>Our Values</h2>
+        <ul>
+            <li><strong>Integrity:</strong> We believe in doing the right thing, even when no one is watching.</li>
+            <li><strong>Innovation:</strong> We are committed to pushing the boundaries and continuously improving.</li>
+            <li><strong>Customer Centricity:</strong> Our customers' needs always come first in everything we do.</li>
+        </ul>
+        <a href="#" class="back-button" data-target="table-of-contents">Back to Table of Contents</a>
+    </section>
+
+    <section id="team">
+        <h2>Our Team</h2>
+        <p>
+            Our team consists of talented professionals from diverse backgrounds, all sharing a common goal of delivering excellence.
+        </p>
+        <a href="#" class="back-button" data-target="table-of-contents">Back to Table of Contents</a>
+    </section>
+
+    <section id="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or want to get in touch with us, here’s how you can reach us:</p>
+        <ul>
+            <li>Email: VBS@company.com</li>
+            <li>Phone: +1-234-567-890</li>
+            <li>Address: 123 Company Street, City, Country</li>
+        </ul>
+        <a href="#" class="back-button" data-target="table-of-contents">Back to Table of Contents</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 VBS. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('#table-of-contents a, .back-button').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('data-target');
+
+                // Hide all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the target section
+                document.getElementById(targetId).style.display = 'block';
+            });
+        });
+
+        // Initially show only the table of contents
+        document.getElementById('table-of-contents').style.display = 'block';
+    </script>
+</body>
+
+</html>

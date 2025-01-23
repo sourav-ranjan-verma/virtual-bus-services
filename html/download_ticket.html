@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Ticket</title>
+    <link rel="stylesheet" href="/css/style_ticket.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1>Download Your Ticket</h1>
+
+    <div id="svg_wrap"></div>
+
+    <form id="downloadForm">
+        <section>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </section>
+
+        <!-- Submit Button -->
+        <button type="button" id="submit" class="button" style="color: white;">GET TICKET DETAILS</button>
+    </form>
+
+    <div id="ticketDetails" style="margin-top: 20px; display: none;">
+        <h2>Ticket Details</h2>
+        <p id="ticketEmail"></p>
+        <p id="ticketNumber"></p>
+        <p id="ticketDate"></p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                const phone = $("#phone").val(); // Get phone number from input
+
+                // AJAX request to fetch ticket details
+                $.ajax({
+                    url: '/download', // Your server endpoint to download ticket
+                    method: 'GET',
+                    data: { phone: phone }, // Send phone number as query parameter
+                    success: function (data) {
+                        // Display ticket information on the page
+                        $("#ticketEmail").text("Email: " + data.email);
+                        $("#ticketNumber").text("Ticket Number: " + data.ticketNumber);
+                        $("#ticketDate").text("Date: " + data.date);
+                        $("#ticketDetails").show(); // Show the ticket details section
+                    },
+                    error: function (error) {
+                        alert("Error retrieving ticket: " + error.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

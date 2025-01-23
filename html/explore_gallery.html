@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Bus Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 2.5rem;
+            color: #444;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            opacity: 0.8;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Bus Services Gallery</h1>
+
+    <div class="gallery-container">
+        <!-- Gallery Item 1 -->
+        <div class="gallery-item">
+            <img src="https://images.pexels.com/photos/1063434/pexels-photo-1063434.jpeg" alt="Bus on the Road">
+            <div class="overlay">Comfortable Journeys</div>
+        </div>
+
+        <!-- Gallery Item 2 -->
+        <div class="gallery-item">
+            <img src="https://images.pexels.com/photos/1860771/pexels-photo-1860771.jpeg" alt="City Bus Service">
+            <div class="overlay">City Bus Services</div>
+        </div>
+
+        <!-- Gallery Item 3 -->
+        <div class="gallery-item">
+            <img src="https://images.pexels.com/photos/4393030/pexels-photo-4393030.jpeg" alt="Passengers Boarding Bus">
+            <div class="overlay">Easy Boarding Process</div>
+        </div>
+
+        <!-- Gallery Item 4 -->
+        <div class="gallery-item">
+            <img src="https://images.pexels.com/photos/1842465/pexels-photo-1842465.jpeg" alt="Luxury Bus">
+            <div class="overlay">Travel in Luxury</div>
+        </div>
+
+        <!-- Gallery Item 5 -->
+        <div class="gallery-item">
+            <img src="https://images.pexels.com/photos/1673707/pexels-photo-1673707.jpeg" alt="Luxury Bus Interior">
+            <div class="overlay">Comfortable Interior</div>
+        </div>
+
+        <!-- Gallery Item 6 -->
+        <div class="gallery-item">
+            <img src="https://images.pexels.com/photos/2898780/pexels-photo-2898780.jpeg" alt="Happy Passengers">
+            <div class="overlay">Happy Passengers</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Bus Services. All Rights Reserved.</p>
+    </div>
+
+</body>
+
+</html>
